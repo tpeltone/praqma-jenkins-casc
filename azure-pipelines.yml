@@ -1,0 +1,37 @@
+pool:
+  name: Hosted Ubuntu 1604
+steps:
+- powershell: 'get-childitem -path env:'
+  displayName: 'Dump web Environment Variables'
+
+- task: DockerCompose@0
+  displayName: 'Run a Docker Compose up --build'
+  inputs:
+    containerregistrytype: 'Container Registry'
+    dockerRegistryEndpoint: 'Tomi Docker Hub'
+    dockerComposeCommand: 'up --build'
+    dockerComposeCommand: 'down'
+
+- bash: 'docker-compose up --build'
+  failOnStderr: true
+  displayName: 'Bash Script'
+  enabled: false
+
+- task: Docker@0
+  displayName: 'Build an image'
+  inputs:
+    containerregistrytype: 'Container Registry'
+    dockerRegistryConnection: 'Tomi Docker Hub'
+    qualifyImageName: false
+    includeSourceTags: true
+    includeLatestTag: true
+  enabled: false
+
+- task: Docker@0
+  displayName: 'Push an image'
+  inputs:
+    containerregistrytype: 'Container Registry'
+    dockerRegistryConnection: 'Tomi Docker Hub'
+    action: 'Push an image'
+    additionalImageTags: TOMITEST
+    includeSourceTags: true
