@@ -5,24 +5,27 @@ steps:
   displayName: 'Dump web Environment Variables'
 
 - task: DockerCompose@0
-  displayName: 'Run a Docker Compose up --build'
+  displayName: 'Run Docker Compose up --build -d'
   inputs:
     containerregistrytype: 'Container Registry'
     dockerRegistryEndpoint: 'Tomi Docker Hub'
     dockerComposeCommand: 'up --build -d'
 
 - task: DockerCompose@0
-  displayName: 'Run a Docker Compose down'
+  displayName: 'Run Docker Compose down'
   inputs:
     containerregistrytype: 'Container Registry'
     dockerRegistryEndpoint: 'Tomi Docker Hub'
-    dockerComposeCommand: 'down'    
+    dockerComposeCommand: down
 
-- task: Docker@0
-  displayName: 'Push an image'
+- bash: 'docker images -a'
+  failOnStderr: true
+  displayName: 'Run Bash Script docker images -a'
+
+- task: Docker@2
+  displayName: 'Push Docker image to Docker Hub'
   inputs:
-    containerregistrytype: 'Container Registry'
-    dockerRegistryConnection: 'Tomi Docker Hub'
-    action: 'Push an image'
-    additionalImageTags: TOMITEST
-    includeSourceTags: true
+    containerRegistry: 'Tomi Docker Hub'
+    repository: 'tpeltone/praqma-jenkins-casc'
+    command: push
+    tags: 'jcasc-$(Build.BuildId)'
