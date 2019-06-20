@@ -11,20 +11,12 @@ steps:
     dockerRegistryEndpoint: 'Tomi Docker Hub'
     dockerComposeCommand: 'up --build -d'
 
-- bash: 'docker-compose up --build'
-  failOnStderr: true
-  displayName: 'Bash Script'
-  enabled: false
-
-- task: Docker@0
-  displayName: 'Build an image'
+- task: DockerCompose@0
+  displayName: 'Run a Docker Compose down'
   inputs:
     containerregistrytype: 'Container Registry'
-    dockerRegistryConnection: 'Tomi Docker Hub'
-    qualifyImageName: false
-    includeSourceTags: true
-    includeLatestTag: true
-  enabled: false
+    dockerRegistryEndpoint: 'Tomi Docker Hub'
+    dockerComposeCommand: 'down'    
 
 - task: Docker@0
   displayName: 'Push an image'
