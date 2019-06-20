@@ -9,8 +9,7 @@ steps:
   inputs:
     containerregistrytype: 'Container Registry'
     dockerRegistryEndpoint: 'Tomi Docker Hub'
-    dockerComposeCommand: 'up --build'
-    dockerComposeCommand: 'down'
+    dockerComposeCommand: 'up --build -d'
 
 - bash: 'docker-compose up --build'
   failOnStderr: true
