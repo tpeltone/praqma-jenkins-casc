@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:lts
+FROM jenkins/jenkins:2.164.3
 
 LABEL maintainer="ewe@praqma.net"
 COPY plugins_extra.txt /usr/share/jenkins/ref/plugins_extra.txt
