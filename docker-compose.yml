@@ -2,10 +2,10 @@ version: '3.3'
 # Dummy checkin
 services:
   jenkins:
-    image:
-      tpeltone/jcasc:latest
-    # build: #TODO: Once plugin installation is handled through c-as-c this can be removed and replaced with 'image'.
-    #   context: ./master
+    #image:
+    #  tpeltone/jcasc:latest
+    build: #TODO: Once plugin installation is handled through c-as-c this can be removed and replaced with 'image'.
+       context: ./master
     ports: 
       - 80:8080
       - 50000:50000
