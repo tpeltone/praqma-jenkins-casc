@@ -1,4 +1,3 @@
-#jobs:
-#  - url: https://raw.githubusercontent.com/Praqma/job-dsl-collection/master/configuration-as-code-dsl/pipeline.dsl #casc
-#  - url: https://raw.githubusercontent.com/Praqma/memory-map-plugin/master/jenkins-pipeline/pipeline.groovy #memory map
-#  - url: https://raw.githubusercontent.com/Praqma/codesonar-plugin/master/jenkins-pipeline/pipeline.groovy #codesonar
+jobs:
+  - url: https://raw.githubusercontent.com/tpeltone/praqma-jenkins-casc/demomeetup/jobs_collection/freestyle_job_one.dsl
+  - url: https://raw.githubusercontent.com/tpeltone/praqma-jenkins-casc/demomeetup/jobs_collection/freestyle_job_two.dsl
