@@ -3,4 +3,7 @@ freeStyleJob('jobOne') {
     steps {
         shell "echo \"Hello from job one \""
     }
+    publishers {
+        downstream('jobTwo')
+    }
 }
